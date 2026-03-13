@@ -1,0 +1,968 @@
+/* ============================================================
+   Conference Website Styles
+   Design inspired by EUVIP 2026 (https://euvip2026.github.io/)
+   ============================================================ */
+
+/* ══════════════════════════════════════════════════════════════
+   COLOUR PALETTE — edit only this block to rebrand the site.
+
+   When you change --brand, also update --brand-rgb with the
+   same colour expressed as three R, G, B numbers.
+     e.g.  #1E3060  →  --brand-rgb: 30, 48, 96
+           #2B6CB0  →  --brand-rgb: 43, 108, 176
+           #1a5c3a  →  --brand-rgb: 26, 92, 58
+══════════════════════════════════════════════════════════════ */
+
+/* Note: the original design used a slightly different shade of blue (#2B6CB0) —
+ feel free to switch to that if you prefer! */
+
+/* 2026 palette 
+  1ED5471 (rgb 30, 84, 113), 
+  17224D (rgb 23, 34, 77), 
+  D6A43F (rgb 214, 164, 63 */
+
+:root {
+  /*--brand:         #1E3060;     /* nav, headings, buttons, accents   */
+  /*--brand-rgb:     30, 48, 96;    /* same colour as RGB — keep in sync */
+  --brand: #17224D;
+  /* nav, headings, buttons, accents   */
+  --brand-rgb: 23, 34, 77;
+  /* same colour as RGB — keep in sync */
+  --sub-brand: #D6A43F;
+  /* section title color */
+  --brand-hover: #2a4580;
+  /* button / link hover state         */
+  --surface: #F6FAFE;
+  /* alternate (light-blue) section bg */
+  --white: #ffffff;
+  /* standard white section bg         */
+
+  --text: #374151;
+  /* body copy                         */
+  --text-dark: #111111;
+  /* near-black (form inputs, body)    */
+  --text-muted: #4b5563;
+  /* secondary / descriptive text      */
+
+  --footer-border: #e5e7eb;
+  --photo-bg: #cbd5e1;
+  /* placeholder circles for photos    */
+  --photo-text: #94a3b8;
+  /* icon colour inside placeholders   */
+
+  /* ── Layout (not colours) ──────────────────────────────── */
+  --header-height: 80px;
+
+  /* ── Typography ─────────────────────────────────────────
+     To change the font:
+       (1) update --font-base below
+       (2) update the Google Fonts <link> in _layouts/default.html
+
+    8px = 0.5rem
+    12px = 0.75rem
+    16px = 1rem
+    20px = 1.25rem
+    24px = 1.5rem
+  ──────────────────────────────────────────────────────── */
+  --font-base: 'Roboto', sans-serif;
+
+  --size-xs: 0.8125rem;
+  /* 13px – table headers, small labels      */
+  --size-sm: 0.875rem;
+  /* 14px – nav, footer, form labels         */
+  --size-body: 0.9375rem;
+  /* 15px – general body text & buttons      */
+
+  /*--size-body-lg: 1.0625rem; */
+  /* 17px – body copy on wider screens       */
+
+  --size-body-lg: 0.9375rem;
+  /* 15px – general body text & buttons      */
+
+  /*--size-subhead: 1.125rem; */
+  /* 18px – subsection titles, speaker names */
+
+  --size-subhead: 1rem;
+  /* 16px – subsection titles, speaker names */
+
+  /*--size-heading: 1.875rem; */
+  /* 30px – section headings (mobile)        */
+
+  --size-heading: 1.5rem;
+  /* 24px – section headings (mobile)        */
+  --size-heading-lg: 2.25rem;
+  /* 36px – section headings (768px+)        */
+  --size-page-hero: 2rem;
+  /* 32px – inner page banner title (mobile) */
+  --size-hero-subtitle: 2rem;
+  --size-hero: 2.5rem;
+  /* 40px – inner page title (768px+) & home hero title (mobile)        */
+  --size-hero-lg: 3.75rem;
+  /* 60px – home hero title (1024px+)        */
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-base);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  min-height: var(--header-height);
+  display: flex;
+  flex-direction: column;
+  /* stacks mobile nav below */
+  background-color: var(--white);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+}
+
+/* Logo */
+.site-logo {
+  flex-shrink: 0;
+}
+
+/* never compress the logo */
+.site-logo img {
+  height: auto;
+  width: 150px;
+}
+
+.site-logo-text {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--brand);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Desktop Navigation ---------- */
+.site-nav {
+  display: none;
+  height: var(--header-height);
+  align-items: center;
+  gap: 2rem;
+  font-size: var(--size-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (min-width: 1024px) {
+  .site-nav {
+    display: flex;
+  }
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  color: var(--brand);
+  white-space: nowrap;
+  transition: border-color 0.2s ease;
+}
+
+.nav-link:hover {
+  border-bottom-color: rgba(var(--brand-rgb), 0.55);
+}
+
+.nav-link.active {
+  font-weight: 700;
+  border-bottom-color: var(--brand);
+}
+
+.nav-separator {
+  color: rgba(var(--brand-rgb), 0.35);
+  user-select: none;
+}
+
+.nav-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand);
+  transition: opacity 0.2s ease;
+}
+
+.nav-social-link:hover {
+  opacity: 0.75;
+}
+
+.nav-social-link img {
+  width: 1.1rem;
+  height: 1.1rem;
+  display: block;
+}
+
+/* ---------- Mobile Menu Button ---------- */
+.mobile-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(var(--brand-rgb), 0.25);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--brand);
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+/* ---------- Mobile Navigation Drawer ---------- */
+.mobile-nav {
+  display: none;
+  padding: 0.75rem 1.5rem 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.mobile-nav.open {
+  display: block;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 0.625rem 0.75rem;
+  font-size: var(--size-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--brand);
+  border-left: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.mobile-nav a:hover {
+  border-left-color: rgba(var(--brand-rgb), 0.55);
+}
+
+.mobile-nav a.active {
+  font-weight: 700;
+  border-left-color: var(--brand);
+}
+
+/* ---------- Full-Screen Hero (Home page) ---------- */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-top: calc(-0.5 * var(--header-height));
+  /* slides under the fixed header */
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+  position: relative;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: calc(var(--header-height) + 3rem) 1.5rem 4rem;
+  color: var(--white);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+}
+
+.hero-content h1 {
+  font-size: var(--size-hero);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  margin-top: 2rem;
+  font-size: var(--size-hero-subtitle);
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  .hero-content {
+    padding-left: 4rem;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    padding-left: 7.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: var(--size-hero-lg);
+  }
+
+  .hero-subtitle {
+    margin-top: 4rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* ---------- Easter Egg Hotspots ---------- */
+
+/* Base hotspot — invisible clickable area with pulsing dot */
+.easter-hotspot {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 6;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* The subtle pulsing dot (always visible, but very small and unobtrusive) */
+.easter-hotspot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(200, 230, 255, 0.5);
+  animation: hotspot-pulse 3s ease-in-out 1;
+}
+
+@keyframes hotspot-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(200, 230, 255, 0.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(200, 230, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(200, 230, 255, 0); }
+}
+
+/* Tooltip — shown on hover / keyboard focus */
+.easter-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(8, 12, 35, 0.92);
+  color: #dce8f5;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  white-space: nowrap;
+  border: 1px solid rgba(150, 200, 255, 0.25);
+  pointer-events: none;
+  text-align: center;
+}
+
+.easter-hotspot:hover .easter-tooltip,
+.easter-hotspot:focus  .easter-tooltip {
+  display: block;
+}
+
+/* Pale Blue Dot — no animation at all, the dot is already visible in the image */
+.pbd-hotspot::before {
+  animation: none;
+}
+
+/* Pale Blue Dot tooltip appears below the dot (banner is short, above would hit the header) */
+.pbd-hotspot .easter-tooltip {
+  bottom: auto;
+  top: calc(100% + 10px);
+}
+
+/* DEBUG MODE — makes the hotspot clearly visible for positioning.
+   Remove class "hotspot-debug" from the element once happy with position. */
+.hotspot-debug {
+  outline: 3px dashed orangered;
+  background: rgba(255, 80, 0, 0.25);
+}
+.hotspot-debug::before {
+  width: 14px;
+  height: 14px;
+  background: orangered;
+  animation: none;
+}
+
+/* ---------- Inner Page Hero (all pages except Home) ---------- */
+.page-hero {
+  margin-top: var(--header-height);
+  background-color: var(--brand);
+  color: var(--white);
+  padding: 3.5rem 1.5rem 3rem;
+  position: relative;
+  overflow: visible; /* allows easter-egg tooltip to appear above/below the banner */
+}
+
+/* Clip the canvas animation to the banner box without clipping the hotspot tooltip */
+#hero-canvas {
+  clip-path: inset(0);
+}
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.page-hero-inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  font-size: var(--size-page-hero);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .page-hero h1 {
+    font-size: var(--size-hero);
+  }
+}
+
+.page-hero-accent {
+  width: 4rem;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+  margin-top: 0.875rem;
+}
+
+/* ---------- Content Sections ---------- */
+.section-white {
+  background-color: var(--white);
+}
+
+.section-surface {
+  background-color: var(--surface);
+}
+
+.section-container {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding: 5rem 2rem;
+  }
+}
+
+/* ---------- Section Headings ---------- */
+.section-title {
+  font-size: var(--size-heading);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--sub-brand);
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: var(--size-heading-lg);
+  }
+}
+
+.section-accent {
+  width: 4rem;
+  height: 4px;
+  background-color: var(--brand);
+  border-radius: 9999px;
+  margin-top: 0.875rem;
+}
+
+/* ---------- Body Text ---------- */
+.section-body {
+  margin-top: 2rem;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.section-body p+p {
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .section-body {
+    font-size: var(--size-body-lg);
+  }
+}
+
+/* ---------- Two-column layout ---------- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .two-col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- Map / Image placeholder ---------- */
+.map-placeholder {
+  width: 100%;
+  height: 18rem;
+  background-color: var(--photo-bg);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--photo-text);
+  font-size: var(--size-sm);
+  overflow: hidden;
+}
+
+.map-placeholder iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn-outline {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  font-size: var(--size-sm);
+  font-weight: 500;
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.btn-outline:hover {
+  background-color: rgba(var(--brand-rgb), 0.06);
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background-color: var(--brand);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-base);
+  font-size: var(--size-body);
+  font-weight: 600;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-hover);
+}
+
+/* ---------- Person Cards (Committee / Speakers) ---------- */
+.person-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.person-card {
+  text-align: center;
+}
+
+.person-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: var(--photo-bg);
+  margin: 0 auto 0.875rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--photo-text);
+  font-size: 0.75rem;
+  /* tiny placeholder icon — intentionally fixed */
+  box-shadow: 0 0 0 2px var(--photo-bg);
+}
+
+.person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.person-name {
+  font-weight: 700;
+  color: var(--brand);
+  font-size: var(--size-body);
+  line-height: 1.3;
+}
+
+.person-role {
+  font-size: var(--size-xs);
+  color: var(--brand);
+  font-weight: 500;
+  margin-top: 0.2rem;
+  opacity: 0.75;
+}
+
+.person-affiliation {
+  font-size: var(--size-xs);
+  color: var(--text);
+  margin-top: 0.2rem;
+  opacity: 0.8;
+}
+
+/* ---------- Committee sub-heading ---------- */
+.subsection-title {
+  font-size: var(--size-subhead);
+  font-weight: 700;
+  color: var(--brand);
+  margin-top: 3rem;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(var(--brand-rgb), 0.15);
+}
+
+/* ---------- Keynote Speaker card (wider) ---------- */
+.speaker-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  border: 1px solid rgba(var(--brand-rgb), 0.12);
+  border-radius: 4px;
+  background: var(--white);
+}
+
+@media (min-width: 640px) {
+  .speaker-card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.speaker-photo {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--photo-bg);
+  overflow: hidden;
+}
+
+.speaker-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.speaker-name {
+  font-size: var(--size-subhead);
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.speaker-affil {
+  font-size: var(--size-sm);
+  color: var(--text);
+  margin-top: 0.25rem;
+}
+
+.speaker-title {
+  font-size: var(--size-body);
+  font-weight: 500;
+  color: var(--brand);
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+.speaker-bio {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-top: 0.75rem;
+  line-height: 1.75;
+}
+
+.speakers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+/* ---------- Important Dates Table ---------- */
+.dates-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.dates-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background-color: var(--brand);
+  color: var(--white);
+  font-size: var(--size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dates-table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(var(--brand-rgb), 0.10);
+  font-size: var(--size-body);
+  color: var(--text);
+}
+
+.dates-table tr:last-child td {
+  border-bottom: none;
+}
+
+.dates-table tr:nth-child(even) td {
+  background-color: var(--surface);
+}
+
+.date-event {
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.date-strikethrough {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ---------- Program Schedule ---------- */
+.schedule-day {
+  margin-top: 2.5rem;
+}
+
+.schedule-day:first-child {
+  margin-top: 2rem;
+}
+
+.schedule-day-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--brand);
+  padding: 0.625rem 1rem;
+  background-color: rgba(var(--brand-rgb), 0.08);
+  border-left: 4px solid var(--brand);
+  margin-bottom: 0.25rem;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.schedule-time {
+  font-size: var(--size-sm);
+  font-weight: 500;
+  color: var(--brand);
+  opacity: 0.8;
+}
+
+.schedule-event {
+  font-size: var(--size-body);
+  color: var(--text);
+}
+
+.schedule-event strong {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+/* ---------- Contact Layout ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1.3fr;
+  }
+}
+
+.contact-info p {
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+.contact-email {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.contact-form label {
+  display: block;
+  font-size: var(--size-sm);
+  font-weight: 500;
+  color: var(--brand);
+  margin-bottom: 0.375rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid rgba(var(--brand-rgb), 0.25);
+  border-radius: 2px;
+  font-family: var(--font-base);
+  font-size: var(--size-body);
+  color: var(--text-dark);
+  background: var(--white);
+  margin-bottom: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--footer-border);
+  color: var(--brand);
+}
+
+.footer-inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: var(--size-sm);
+}
+
+@media (min-width: 640px) {
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    text-align: left;
+  }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer-copy {
+  opacity: 0.7;
+}
+
+.footer-linkedin,
+.contact-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.footer-linkedin img,
+.contact-linkedin img {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
