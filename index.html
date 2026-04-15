@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home — SCP2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Font: to switch fonts, replace 'Roboto' here and update --font-base in assets/css/style.css -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="/" class="site-logo">
+        <!-- <img src="/assets/img/2026-scp-logo.png" alt="SCP2026 Logo" /> -->
+        <img src="/assets/img/SCP2026-logo.svg" alt="SCP2026 Logo" />
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/index.html"
+          class="nav-link active">Home</a>
+        <a href="/calls.html"
+          class="nav-link">Call for Papers</a>
+        <a href="/committee.html"
+          class="nav-link">Committees</a>
+        <a href="/submission.html"
+          class="nav-link">Paper Submission</a>
+        <a href="/attend.html"
+          class="nav-link">Venue &amp; Registration</a>
+        <a href="/program.html"
+          class="nav-link">Program &amp; Keynotes</a>
+        <a href="/contact.html"
+          class="nav-link">Contact</a>
+        <span class="nav-separator" aria-hidden="true">|</span>
+        <a href="https://www.linkedin.com/company/scpconference/" class="nav-social-link" target="_blank"
+          rel="noopener noreferrer" aria-label="SCP Conference on LinkedIn">
+          <img src="/assets/img/linkedin-icon.svg" alt="LinkedIn" />
+        </a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobile-btn" onclick="toggleMenu()" aria-label="Toggle navigation">
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="/index.html"  class="active" >Home</a>
+      <a href="/calls.html" >Call
+        for Papers</a>
+      <a href="/committee.html" >Committees</a>
+      <a href="/submission.html" >Paper Submission</a>
+      <a href="/attend.html" >Venue
+        &amp; Registration</a>
+      <a href="/program.html" >Program &amp; Keynotes</a>
+      <a href="/contact.html" >Contact</a>
+      <a href="https://www.linkedin.com/company/scpconference/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </header>
+
+  <main><section class="hero">
+  <img src="/assets/img/hero.png" alt="" class="hero-bg" aria-hidden="true" />
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Casemates Easter egg
+       DEBUG MODE ON — remove class "hotspot-debug" once position is correct.
+       Adjust top/left percentages to move the dot over the casemates in the image. -->
+  <a href="https://www.luxembourg-city.com/en/tours-activities/underground/petrusse-casemates"
+     target="_blank" rel="noopener noreferrer"
+     class="easter-hotspot"
+     style="top: 75%; left: 53%;"
+     aria-label="Discover the Pétrusse Casemates, Luxembourg">
+    <span class="easter-tooltip">
+      <strong>Pétrusse Casemates</strong><br>
+      Hidden beneath Luxembourg City —<br>discover this underground wonder.
+    </span>
+  </a>
+
+  <div class="hero-content">
+    <h1>Conference on <br> Sociotechnical Cybersecurity and Privacy <br> (SCP2026)</h1>
+    <p class="hero-subtitle">September 2–3, 2026 · Belval, Luxembourg</p>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────────────── -->
+<section class="section-white">
+  <div class="section-container">
+    <h2 class="section-title">About SCP2026</h2>
+    <div class="section-accent" aria-hidden="true"></div>
+    <div class="section-body">
+       <p>
+        Contemporary digital infrastructures are inherently sociotechnical systems.
+        Security and privacy outcomes arise from the interaction between
+        technologies, people, and organizational contexts. Technical mechanisms alone
+        cannot fully address security challenges, just as focusing solely on human
+        behavior overlooks the crucial role of system design. Effective solutions
+        therefore require integrating both perspectives.
+      </p>
+      <p>
+        The Conference on Sociotechnical Cybersecurity and Privacy (SCP) is a new conference 
+        that emerged by combining two successful events in socio-technical, user-centric 
+        privacy and security: <em>EuroUSEC</em> (European Symposium
+        on Usable Security) and <em>STAST</em> (International Workshop on Socio-Technical Aspects
+        in Security). It aims to bring together researchers and practitioners from diverse
+        backgrounds — including computer science, engineering, psychology, the social sciences,
+        and economics — to provide a forum for research and to discuss issues related to
+        human-computer interaction, security, and privacy.
+      </p>
+      <p>
+        Research in usable security and human-centered cybersecurity has increasingly challenged the long-standing notion that humans are the "weakest link", still this is an opinion that persists, overcoming that many security failures stem from technologies designed without adequately considering human capabilities, practices, and constraints. In practice, successful attacks frequently exploit both technical vulnerabilities and human factors - including poorly designed interfaces, unclear security policies, and misaligned user incentives.
+      </p>
+      <p>
+        SCP promotes research that treats people as integral components of
+        systems and services exploring how technology and human behavior can be jointly designed
+        to support effective, usable, and trustworthy security and privacy.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Important Dates ──────────────────────────────────────── -->
+<section class="section-surface">
+  <div class="section-container">
+    <h2 class="section-title">Important Dates</h2>
+    <div class="section-accent" aria-hidden="true"></div>
+
+    <!-- Dates rendered from _data/dates.yml -->
+    <table class="dates-table">
+      <thead>
+        <tr><th>Event</th><th>Date</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="date-event ">Abstract registration (mandatory)</td>
+          <td class="">May 20, 2026</td>
+        </tr>
+        
+        <tr>
+          <td class="date-event ">Paper submission</td>
+          <td class="">May 25, 2026</td>
+        </tr>
+        
+        <tr>
+          <td class="date-event ">Notification</td>
+          <td class="">June 25, 2026</td>
+        </tr>
+        
+        <tr>
+          <td class="date-event ">Camera-ready</td>
+          <td class="">July 27, 2026</td>
+        </tr>
+        
+        <tr>
+          <td class="date-event ">Conference</td>
+          <td class="">September 2–3, 2026</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+  <p style="margin-top:1.25rem; font-size:0.875rem; color:var(--text); opacity:0.75;">
+      <!-- These are <strong>firm deadlines</strong>; no extensions will be granted. -->
+      All deadlines are at 23:59 AoE (Anywhere on Earth).
+    </p>
+  </div>
+</section>
+
+</main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p style="font-weight:600; letter-spacing:-0.01em;">SCP2026 · Luxembourg</p>
+        
+        <p class="footer-copy">
+          Follow us on
+          <a href="https://www.linkedin.com/company/scpconference/" class="footer-linkedin" target="_blank"
+            rel="noopener noreferrer" aria-label="Follow SCP Conference on LinkedIn">
+            LinkedIn
+            <img src="/assets/img/linkedin-icon.svg" alt="" />
+          </a>
+        </p>
+        
+      </div>
+      <p class="footer-copy">© 2026. All rights reserved.</p>
+      
+      <p class="footer-copy" style="margin-top:0.4rem; font-size:0.78rem; opacity:0.7;">
+        Main Artwork © G. Lenzini's photo + AI - <a href="https://creativecommons.org/licenses/" target="_blank"
+          rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">CC-BY-NC-ND licence</a>.
+        <br/>Blue banners inspired by C. Sagan's
+        <a href="https://en.wikipedia.org/wiki/Pale_Blue_Dot" target="_blank" rel="noopener noreferrer"
+          style="color:inherit; text-decoration:underline;"><strong>Pale Blue Dot</strong></a>
+        (AI adaptation: H. Hammouchi)
+      </p>
+      
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var nav = document.getElementById('mobile-nav');
+      var open = document.getElementById('icon-open');
+      var close = document.getElementById('icon-close');
+      var isOpen = nav.classList.toggle('open');
+      open.style.display = isOpen ? 'none' : '';
+      close.style.display = isOpen ? '' : 'none';
+    }
+  </script>
+
+</body>
+
+</html>

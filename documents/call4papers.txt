@@ -1,0 +1,92 @@
+----------------------------------------------------------------------
+CALL FOR PAPERS 
+----------------------------------------------------------------------
+Conference on Sociotechnical Cybersecurity and Privacy 
+(SCP 2026)
+
+Luxembourg September 2–3, 2026
+URL: https://scpconf.eu
+----------------------------------------------------------------------
+
+The Conference on Sociotechnical Cybersecurity and Privacyis a new conference that emerges by 
+combining two successful events in socio-technical, user-centric privacy and security: 
+
+- EuroUSEC (European Symposium on Usable Security), and 
+- STAST (International Workshop on Socio-Technical Aspects in Security). 
+
+It aims to bring together researchers and practitioners from diverse backgrounds 
+— including computer science, engineering, psychology, the social sciences, and economics — 
+to provide a forum for research and to discuss issues related to human-computer 
+interaction, security, and privacy. 
+
+The conference brings together communities working at the intersection of
+technical and human-centered cybersecurity to explore how security and privacy
+can be designed, developed, deployed, and experienced in real-world contexts.
+
+
+IMPORTANT DATES
+---------------
+
+Abstract registration (mandatory)  May 20, 2026
+Paper submission 					May 25, 2026
+Notification						June 25, 2026
+Camera-ready						July 27, 2026
+  
+All deadlines are at 23:59 AoE (Anywhere on Earth).
+
+SCOPE & TOPICS
+--------------
+
+We welcome submissions containing unpublished original work describing research
+in all areas of usable security and privacy.
+
+We also welcome the
+systematization of knowledge (SoK) papers, well-executed
+replication studies, including works presenting a nd discussing negative
+results.
+
+We appreciate a variety and mixture of research methods, including both
+qualitative and quantitative approaches.
+
+Topics include, but are not limited to:
+
+  * Usable security/privacy in specific domains
+  * Usable security/privacy research methodologies
+  * AI/GenAI for usable security and privacy
+  * Field studies of security/privacy technology
+  * Longitudinal studies of deployed security/privacy features
+  * New applications of existing security/privacy models
+  * Innovative security/privacy functionality and design
+  * Usability evaluations of security/privacy features
+  * Security testing of usability features
+  * Lessons from deployment of usable security/privacy features
+  * Failed security/privacy studies: lessons learned
+  * Replication of key prior studies and experiments
+  * Psychological/sociological/economic aspects of security/privacy
+  * Admin/developer studies on security and privacy
+  * Adoption of security/privacy technologies
+  * Systematization of knowledge (SoK)
+  * Org policy/procurement impact on security/privacy
+  * Models of user behaviour and technology interaction
+  * Risk perceptions and their influence on humans
+  * Social engineering and deception techniques
+  * Socio-technical systems requirements
+  * Decision-making in socio-technical systems
+  * Policies/standards feasibility: socio-technical view
+  * Social factors in org policies and processes
+  * Law, ethics, and politics in security/privacy
+  * Technical measures vs. social strategies
+  * Threat models: technical and human-centered
+  * Socio-technical analysis of incidents/vulnerabilities
+  * Real-world incidents: socio-technical perspective
+  * Lessons from design/deployment of policies and standards
+  * Intelligence/data analysis: socio-technical guidelines
+
+
+TYPES OF CONTRIBUTIONS
+----------------------
+
+Full papers (8–12 pages) that include complete original research, answer
+well-defined research questions, and present full and stable results.
+
+For submission, visit: https://scpconf.eu/submission.html

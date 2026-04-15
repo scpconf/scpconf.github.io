@@ -1,0 +1,61 @@
+===========================================================
+           SCP 2026 – REVIEW FORM
+===========================================================
+
+INSTRUCTIONS
+------------
+Please complete all required fields marked with (*).
+Both the score and the review text are required for
+the Overall Evaluation field.
+
+
+-----------------------------------------------------------
+1. OVERALL EVALUATION  [required *]
+-----------------------------------------------------------
+Please provide a detailed review, including a justification
+for your scores. Both the score and the review text are
+required.
+
+Score (select one):
+
+  [ ] strong accept
+  [ ] accept
+  [ ] weak accept
+  [ ] borderline paper
+  [ ] weak reject
+  [ ] reject
+  [ ] strong reject
+
+Review text:
+(write your detailed review below)
+
+
+
+
+-----------------------------------------------------------
+2. REVIEWER'S CONFIDENCE  [required *]
+-----------------------------------------------------------
+Score (select one):
+
+  [ ] expert
+  [ ] high
+  [ ] medium
+  [ ] low
+  [ ] none
+
+
+-----------------------------------------------------------
+3. CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE
+    [optional – NOT visible to authors]
+-----------------------------------------------------------
+If you wish to add any remarks intended only for PC members,
+please write them below. These remarks will only be seen by
+the PC members having access to reviews for this submission.
+They will NOT be sent to the authors.
+
+(write your confidential remarks below, if any)
+
+
+
+
+===========================================================
