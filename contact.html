@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — SCP2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Font: to switch fonts, replace 'Roboto' here and update --font-base in assets/css/style.css -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="/" class="site-logo">
+        <!-- <img src="/assets/img/2026-scp-logo.png" alt="SCP2026 Logo" /> -->
+        <img src="/assets/img/SCP2026-logo.svg" alt="SCP2026 Logo" />
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/index.html"
+          class="nav-link">Home</a>
+        <a href="/calls.html"
+          class="nav-link">Call for Papers</a>
+        <a href="/committee.html"
+          class="nav-link">Committees</a>
+        <a href="/submission.html"
+          class="nav-link">Paper Submission</a>
+        <a href="/attend.html"
+          class="nav-link">Venue &amp; Registration</a>
+        <a href="/program.html"
+          class="nav-link">Program &amp; Keynotes</a>
+        <a href="/contact.html"
+          class="nav-link active">Contact</a>
+        <span class="nav-separator" aria-hidden="true">|</span>
+        <a href="https://www.linkedin.com/company/scpconference/" class="nav-social-link" target="_blank"
+          rel="noopener noreferrer" aria-label="SCP Conference on LinkedIn">
+          <img src="/assets/img/linkedin-icon.svg" alt="LinkedIn" />
+        </a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobile-btn" onclick="toggleMenu()" aria-label="Toggle navigation">
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="/index.html" >Home</a>
+      <a href="/calls.html" >Call
+        for Papers</a>
+      <a href="/committee.html" >Committees</a>
+      <a href="/submission.html" >Paper Submission</a>
+      <a href="/attend.html" >Venue
+        &amp; Registration</a>
+      <a href="/program.html" >Program &amp; Keynotes</a>
+      <a href="/contact.html"  class="active" >Contact</a>
+      <a href="https://www.linkedin.com/company/scpconference/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </header>
+
+  <main><section class="page-hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="page-hero-inner">
+    <h1>Contact</h1>
+    <div class="page-hero-accent" aria-hidden="true"></div>
+  </div>
+
+  <!-- Pale Blue Dot Easter egg
+       DEBUG MODE ON — remove class "hotspot-debug" once position is correct.
+       Adjust top/left to sit exactly on the canvas-drawn Earth dot.
+       Current values mirror VIV_EARTH: xFrac=0.74, yFrac=0.46 -->
+  <a href="https://science.nasa.gov/photojournal/pale-blue-dot-revisited/" target="_blank" rel="noopener noreferrer"
+    class="easter-hotspot pbd-hotspot" style="top: 46%; left: 74%;" aria-label="The Pale Blue Dot — NASA Voyager 1">
+    <span class="easter-tooltip">
+      <strong>Pale Blue Dot</strong><br>
+      Earth, as seen by Voyager 1<br>from 6 billion km away (1990).
+    </span>
+  </a>
+</section>
+
+<script>
+  (function () {
+
+    // ┌──────────────────────────────────────────────────────────────────┐
+    // │  HERO STYLE — change this ONE value to switch the banner theme.  │
+    // │  This file is the layout for every inner page, so changing it    │
+    // │  here updates the banner across the whole site instantly.        │
+    // │                                                                  │
+    // │  'pale-blue-dot'   faithful to the NASA Voyager photograph:      │
+    // │                    dark space, warm amber sunbeams,              │
+    // │                    tiny humble Earth dot inside a ray band       │
+    // │                                                                  │
+    // │  'light-voyager'   colourised / bright interpretation:           │
+    // │                    powder-blue sky background, wide amber rays   │
+    // │                    fanning from top-centre, dark text            │
+    // │                                                                  │
+    // │  'vivid'           original cool-blue glowing version:           │
+    // │                    navy background, blue-white rays,             │
+    // │                    large glowing Earth                           │
+    // └──────────────────────────────────────────────────────────────────┘
+    var HERO_STYLE = 'vivid';
+
+    // ── shared setup ─────────────────────────────────────────────────────
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H, stars = [], t = 0;
+    var NUM_STARS = 210;
+
+    // Flip text colour when the background is light
+    var h1El = document.querySelector('.page-hero h1');
+    var accentEl = document.querySelector('.page-hero-accent');
+    if (HERO_STYLE === 'light-voyager') {
+      if (h1El) h1El.style.color = '#17224D';
+      if (accentEl) accentEl.style.background = 'rgba(23,34,77,0.35)';
+    }
+
+    function resize() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+      stars = [];
+      for (var i = 0; i < NUM_STARS; i++) {
+        stars.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.1 + 0.25,
+          base: Math.random() * 0.55 + 0.25,
+          ph: Math.random() * Math.PI * 2,
+          spd: Math.random() * 0.25 + 0.08
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.globalCompositeOperation = 'source-over';
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var op = s.base + Math.sin(t * s.spd + s.ph) * 0.18;
+        op = Math.max(0.05, Math.min(1, op));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,' + op + ')';
+        ctx.fill();
+      }
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  VERSION: 'light-voyager'
+    //  Colourised interpretation — powder-blue sky, soft amber bands
+    //  drawn as rotated full-height strips (avoids the wedge-stripe
+    //  artefact that the point-source approach creates on a short banner)
+    // ════════════════════════════════════════════════════════════════════
+
+    // Each band: cx = centre as fraction of W, hw = half-width as fraction of W
+    var LV_BANDS = [
+      { cx: 0.08, hw: 0.045, op: 0.22 },
+      { cx: 0.22, hw: 0.075, op: 0.32 },
+      { cx: 0.38, hw: 0.040, op: 0.18 },
+      { cx: 0.55, hw: 0.090, op: 0.38 },  // brightest — Earth sits here
+      { cx: 0.70, hw: 0.055, op: 0.26 },
+      { cx: 0.84, hw: 0.035, op: 0.17 },
+    ];
+
+    // Earth inside the brightest band
+    var LV_EARTH = { xFrac: 0.58, yFrac: 0.50, r: 3.0 };
+
+    function lvDrawBackground() {
+      ctx.globalCompositeOperation = 'source-over';
+      // Powder-blue base — covers the dark CSS hero colour entirely
+      var bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0, '#C2DCED');
+      bg.addColorStop(0.5, '#AECFE3');
+      bg.addColorStop(1, '#9DC4DA');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // Soft warm radial glow from top-centre (the "sun" above frame)
+      var sun = ctx.createRadialGradient(W * 0.5, -H * 0.5, 0, W * 0.5, -H * 0.5, H * 2.8);
+      sun.addColorStop(0, 'rgba(255,225,130,0.38)');
+      sun.addColorStop(0.3, 'rgba(230,190,90,0.18)');
+      sun.addColorStop(0.7, 'rgba(214,164,63,0.06)');
+      sun.addColorStop(1, 'rgba(214,164,63,0)');
+      ctx.fillStyle = sun;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    function lvDrawRays() {
+      // Render as rotated full-height soft gradient strips —
+      // this fills the full banner width cleanly, no convergence artefacts.
+      var ext = H * 3;   // overshoot above/below to cover after rotation
+
+      ctx.save();
+      // Tilt ~10° clockwise to angle the bands like Voyager sunbeams
+      ctx.translate(W * 0.5, H * 0.5);
+      ctx.rotate(0.175);
+      ctx.translate(-W * 0.5, -H * 0.5);
+
+      for (var i = 0; i < LV_BANDS.length; i++) {
+        var b = LV_BANDS[i];
+        var cx = b.cx * W;
+        var hw = b.hw * W;
+
+        // Smooth bell-curve falloff: transparent → amber peak → transparent
+        var grad = ctx.createLinearGradient(cx - hw, 0, cx + hw, 0);
+        grad.addColorStop(0, 'rgba(214,164,63,0)');
+        grad.addColorStop(0.25, 'rgba(216,166,65,' + (b.op * 0.55) + ')');
+        grad.addColorStop(0.50, 'rgba(222,172,68,' + b.op + ')');
+        grad.addColorStop(0.75, 'rgba(216,166,65,' + (b.op * 0.55) + ')');
+        grad.addColorStop(1, 'rgba(214,164,63,0)');
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = grad;
+        ctx.fillRect(cx - hw, -ext, hw * 2, H + ext * 2);
+      }
+
+      ctx.restore();
+    }
+
+    function lvDrawEarth() {
+      var ex = LV_EARTH.xFrac * W;
+      var ey = LV_EARTH.yFrac * H;
+      var er = LV_EARTH.r;
+
+      ctx.globalCompositeOperation = 'source-over';
+
+      // Slightly larger haze to be visible against light background
+      var haze = ctx.createRadialGradient(ex, ey, 0, ex, ey, er * 6);
+      haze.addColorStop(0, 'rgba(30,100,200,0.28)');
+      haze.addColorStop(0.45, 'rgba(50,130,220,0.10)');
+      haze.addColorStop(1, 'rgba(50,130,220,0)');
+      ctx.beginPath();
+      ctx.arc(ex, ey, er * 6, 0, Math.PI * 2);
+      ctx.fillStyle = haze;
+      ctx.fill();
+
+      // Core: vivid pale-blue so it reads against the bright background
+      var dot = ctx.createRadialGradient(ex - er * 0.3, ey - er * 0.3, 0, ex, ey, er);
+      dot.addColorStop(0, 'rgba(200,235,255,1)');
+      dot.addColorStop(0.5, 'rgba(100,175,240,1)');
+      dot.addColorStop(1, 'rgba(60,140,220,0.95)');
+      ctx.beginPath();
+      ctx.arc(ex, ey, er, 0, Math.PI * 2);
+      ctx.fillStyle = dot;
+      ctx.fill();
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  VERSION: 'pale-blue-dot'
+    //  Faithful to the Voyager 1 photograph — dark navy, amber sunbeams,
+    //  tiny humble Earth dot sitting inside one of the ray bands
+    // ════════════════════════════════════════════════════════════════════
+    var PBD_RAYS = [
+      { angle: 0.33, halfWidth: 12, opacity: 0.10 },
+      { angle: 0.40, halfWidth: 32, opacity: 0.14 },
+      { angle: 0.47, halfWidth: 18, opacity: 0.11 },
+      { angle: 0.55, halfWidth: 44, opacity: 0.18 },
+      { angle: 0.63, halfWidth: 20, opacity: 0.10 },
+      { angle: 0.70, halfWidth: 9, opacity: 0.07 },
+    ];
+
+    var PBD_EARTH = { xFrac: 0.635, yFrac: 0.54, r: 2.1 };
+
+    function pbdDrawBackground() {
+      var grad = ctx.createRadialGradient(W * 0.5, H * 0.5, 0, W * 0.5, H * 0.5, Math.max(W, H) * 0.75);
+      grad.addColorStop(0, 'rgba(4,8,22,0.0)');
+      grad.addColorStop(1, 'rgba(4,8,22,0.45)');
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    function pbdDrawRays() {
+      var sx = W * 0.04, sy = H * -0.25;
+      var len = Math.sqrt(W * W + H * H) * 1.8;
+
+      for (var i = 0; i < PBD_RAYS.length; i++) {
+        var ray = PBD_RAYS[i];
+        var ca = Math.cos(ray.angle), sa = Math.sin(ray.angle);
+        var ex = sx + ca * len, ey = sy + sa * len;
+        var px = -sa, py = ca;
+        var spread = ray.halfWidth * (len / 70);
+
+        var grad = ctx.createLinearGradient(sx, sy, ex, ey);
+        grad.addColorStop(0, 'rgba(214,164,63,' + (ray.opacity * 2.0) + ')');
+        grad.addColorStop(0.12, 'rgba(214,164,63,' + (ray.opacity * 1.3) + ')');
+        grad.addColorStop(0.50, 'rgba(200,150,55,' + ray.opacity + ')');
+        grad.addColorStop(1, 'rgba(180,130,45,0)');
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(ex + px * spread, ey + py * spread);
+        ctx.lineTo(ex - px * spread, ey - py * spread);
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.globalCompositeOperation = 'screen';
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function pbdDrawEarth() {
+      var ex = PBD_EARTH.xFrac * W;
+      var ey = PBD_EARTH.yFrac * H;
+      var er = PBD_EARTH.r;
+
+      ctx.globalCompositeOperation = 'source-over';
+
+      var haze = ctx.createRadialGradient(ex, ey, 0, ex, ey, er * 5);
+      haze.addColorStop(0, 'rgba(200,230,255,0.30)');
+      haze.addColorStop(0.5, 'rgba(190,220,255,0.08)');
+      haze.addColorStop(1, 'rgba(190,220,255,0)');
+      ctx.beginPath();
+      ctx.arc(ex, ey, er * 5, 0, Math.PI * 2);
+      ctx.fillStyle = haze;
+      ctx.fill();
+
+      var dot = ctx.createRadialGradient(ex - er * 0.3, ey - er * 0.3, 0, ex, ey, er);
+      dot.addColorStop(0, 'rgba(240,248,255,1)');
+      dot.addColorStop(0.55, 'rgba(190,225,255,1)');
+      dot.addColorStop(1, 'rgba(155,200,245,0.90)');
+      ctx.beginPath();
+      ctx.arc(ex, ey, er, 0, Math.PI * 2);
+      ctx.fillStyle = dot;
+      ctx.fill();
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  VERSION: 'vivid'
+    //  Original cool-blue glowing version — navy bg, blue-white rays,
+    //  large glowing neon-blue Earth
+    // ════════════════════════════════════════════════════════════════════
+    var VIV_RAYS = [
+      { angle: 0.38, halfWidth: 28, opacity: 0.055 },
+      { angle: 0.44, halfWidth: 14, opacity: 0.040 },
+      { angle: 0.50, halfWidth: 40, opacity: 0.070 },
+      { angle: 0.57, halfWidth: 18, opacity: 0.045 },
+      { angle: 0.64, halfWidth: 10, opacity: 0.030 },
+      { angle: 0.32, halfWidth: 8, opacity: 0.025 },
+    ];
+
+    var VIV_EARTH = { xFrac: 0.74, yFrac: 0.46, r: 3.2 };
+
+    function vivDrawRays() {
+      var sx = W * 0.05, sy = H * -0.15;
+      var len = Math.sqrt(W * W + H * H) * 1.6;
+
+      for (var i = 0; i < VIV_RAYS.length; i++) {
+        var ray = VIV_RAYS[i];
+        var ca = Math.cos(ray.angle), sa = Math.sin(ray.angle);
+        var ex = sx + ca * len, ey = sy + sa * len;
+        var px = -sa, py = ca;
+        var hw = ray.halfWidth;
+
+        var grad = ctx.createLinearGradient(sx, sy, ex, ey);
+        grad.addColorStop(0, 'rgba(200,225,255,' + (ray.opacity * 2.2) + ')');
+        grad.addColorStop(0.18, 'rgba(200,225,255,' + ray.opacity + ')');
+        grad.addColorStop(1, 'rgba(200,225,255,0)');
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(ex + px * hw * (len / 80), ey + py * hw * (len / 80));
+        ctx.lineTo(ex - px * hw * (len / 80), ey - py * hw * (len / 80));
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.globalCompositeOperation = 'screen';
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function vivDrawEarth() {
+      var ex = VIV_EARTH.xFrac * W;
+      var ey = VIV_EARTH.yFrac * H;
+      var er = VIV_EARTH.r;
+
+      ctx.globalCompositeOperation = 'source-over';
+
+      var haze = ctx.createRadialGradient(ex, ey, 0, ex, ey, er * 10);
+      haze.addColorStop(0, 'rgba(90,180,255,0.22)');
+      haze.addColorStop(0.45, 'rgba(80,160,255,0.07)');
+      haze.addColorStop(1, 'rgba(80,160,255,0)');
+      ctx.beginPath();
+      ctx.arc(ex, ey, er * 10, 0, Math.PI * 2);
+      ctx.fillStyle = haze;
+      ctx.fill();
+
+      var glow = ctx.createRadialGradient(ex, ey, 0, ex, ey, er * 3.5);
+      glow.addColorStop(0, 'rgba(160,215,255,0.65)');
+      glow.addColorStop(0.6, 'rgba(100,185,255,0.20)');
+      glow.addColorStop(1, 'rgba(100,185,255,0)');
+      ctx.beginPath();
+      ctx.arc(ex, ey, er * 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = glow;
+      ctx.fill();
+
+      var dot = ctx.createRadialGradient(ex - er * 0.35, ey - er * 0.35, 0, ex, ey, er);
+      dot.addColorStop(0, 'rgba(225,245,255,1)');
+      dot.addColorStop(0.5, 'rgba(130,205,255,1)');
+      dot.addColorStop(1, 'rgba(75,155,240,0.95)');
+      ctx.beginPath();
+      ctx.arc(ex, ey, er, 0, Math.PI * 2);
+      ctx.fillStyle = dot;
+      ctx.fill();
+    }
+
+    // ── animation loop ────────────────────────────────────────────────
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      t += 0.007;
+
+      if (HERO_STYLE === 'light-voyager') {
+        lvDrawBackground();
+        lvDrawRays();
+        lvDrawEarth();
+      } else if (HERO_STYLE === 'pale-blue-dot') {
+        pbdDrawBackground();
+        pbdDrawRays();
+        drawStars();
+        pbdDrawEarth();
+      } else {                    // 'vivid'
+        vivDrawRays();
+        drawStars();
+        vivDrawEarth();
+      }
+
+      requestAnimationFrame(loop);
+    }
+
+    resize();
+    loop();
+    window.addEventListener('resize', resize);
+  })();
+</script>
+
+<section class="section-white">
+  <div class="section-container">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="section-accent" aria-hidden="true"></div>
+
+    <div class="contact-info">
+      <p>
+        For general enquiries about the conference, please contact the organising
+        committee at the address below.
+      </p>
+      <p style="margin-top:1.5rem;">
+        <strong style="color:var(--brand);">General enquiries:</strong>
+        <a href="mailto:scp-info@uni.lu" class="contact-email">
+          scp-info@uni.lu
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section-surface">
+  <div class="section-container">
+    <h2 class="section-title">News</h2>
+    <div class="section-accent" aria-hidden="true"></div>
+    <div class="contact-info">
+      <p>
+        Conference updates and announcements on LinkedIn
+        <a href="https://www.linkedin.com/company/scpconference/" class="contact-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Conference updates and announcements on LinkedIn">
+          <img src="/assets/img/linkedin-icon.svg" alt="LinkedIn" />
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
+</main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p style="font-weight:600; letter-spacing:-0.01em;">SCP2026 · Luxembourg</p>
+        
+      </div>
+      <p class="footer-copy">© 2026. All rights reserved.</p>
+      
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var nav = document.getElementById('mobile-nav');
+      var open = document.getElementById('icon-open');
+      var close = document.getElementById('icon-close');
+      var isOpen = nav.classList.toggle('open');
+      open.style.display = isOpen ? 'none' : '';
+      close.style.display = isOpen ? '' : 'none';
+    }
+  </script>
+
+</body>
+
+</html>
